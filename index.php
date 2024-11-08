@@ -70,6 +70,7 @@
     }
     ?>
 
+
     <!-- Modal -->
     <form action="insert_data.php" method="POST">
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,13 +86,13 @@
 
                         <div class="form-group">
                             <label for="name">Name
-                            <span class="text-danger">*</span>
+                                <span class="text-danger">*</span>
                             </label>
                             <input type="text" name="name" class="form-control" required maxlength="60">
                         </div>
                         <div class="form-group">
                             <label for="url">URL
-                            <span class="text-danger">*</span>
+                                <span class="text-danger">*</span>
                             </label>
                             <input type="text" name="url" class="form-control" pattern="https?://.*" placeholder="https://example.com" required>
                         </div>
@@ -104,10 +105,23 @@
                             <input type="number" name="category" class="form-control"> -->
                             <label for="category" class="form-label">Pick a category:</label>
                             <select class="form-select" id="dropdown" name="category">
-                                <option value="0">None</option>
+                                <?php
+                                $query = "SELECT id, name FROM categories";
+                                $result = mysqli_query($connection, $query);
+                                // Optionen für das Dropdown generieren
+                                if ($result->num_rows > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                    }
+                                } else {
+                                    echo '<option disabled>Keine Kategorien gefunden</option>';
+                                }
+                                ?>
+
+                                <!-- <option value="0">None</option>
                                 <option value="1">Entertainment</option>
                                 <option value="2">Social Media</option>
-                                <option value="3">Shopping</option>
+                                <option value="3">Shopping</option> -->
                             </select>
                         </div>
                     </div>
@@ -120,4 +134,3 @@
         </div>
     </form>
     <?php include("footer.php"); ?>
-
