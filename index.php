@@ -19,33 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php
 
-            $query = "SELECT * FROM bookmarks";
-
-            $result = mysqli_query($connection, $query);
-
-            if (!$result) {
-                die("Query failed" . mysqli_error($connection));
-            } else {
-                while ($row = mysqli_fetch_assoc($result)) {
-            ?>
-                    <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['name']; ?></td>
-                        <td><a href="url"><?php echo $row['url']; ?></a></td>
-                        <td><?php echo $row['description']; ?></td>
-                        <td><?php echo $row['category_id']; ?></td>
-                        <td><a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-success">Edit</a></td>
-                        <td><a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a></td>
-                    </tr>
-
-            <?php
-
-                }
-            }
-
-            ?>
         </tbody>
     </table>
 
@@ -72,7 +46,7 @@
 
 
     <!-- Modal -->
-    <form action="insert_data.php" method="POST">
+    <form id="bookmarkForm" method="POST">
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -83,17 +57,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
+                        <!-- Form fields as before -->
                         <div class="form-group">
-                            <label for="name">Name
-                                <span class="text-danger">*</span>
-                            </label>
+                            <label for="name">Name <span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" required maxlength="60">
                         </div>
                         <div class="form-group">
-                            <label for="url">URL
-                                <span class="text-danger">*</span>
-                            </label>
+                            <label for="url">URL <span class="text-danger">*</span></label>
                             <input type="text" name="url" class="form-control" pattern="https?://.*" placeholder="https://example.com" required>
                         </div>
                         <div class="form-group">
@@ -101,14 +71,13 @@
                             <input type="text" name="description" class="form-control">
                         </div>
                         <div class="form-group">
-                            <!-- <label for="category">Category</label>
-                            <input type="number" name="category" class="form-control"> -->
                             <label for="category" class="form-label">Pick a category:</label>
                             <select class="form-select" id="dropdown" name="category">
+                                <!-- Optionen werden per AJAX hinzugefügt -->
                                 <?php
                                 $query = "SELECT id, name FROM categories";
                                 $result = mysqli_query($connection, $query);
-                                // Optionen für das Dropdown generieren
+
                                 if ($result->num_rows > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
@@ -117,17 +86,12 @@
                                     echo '<option disabled>Keine Kategorien gefunden</option>';
                                 }
                                 ?>
-
-                                <!-- <option value="0">None</option>
-                                <option value="1">Entertainment</option>
-                                <option value="2">Social Media</option>
-                                <option value="3">Shopping</option> -->
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-success" name="add_bookmark" value="ADD">
+                        <button type="submit" class="btn btn-success">ADD</button>
                     </div>
                 </div>
             </div>
