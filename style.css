@@ -25,7 +25,7 @@ h6 {
     color: rgb(21, 161, 21);
 }
 
-.table, .box1 {
+.table, .box1, .edit-form {
     margin: auto;
     width: 90% !important; 
 }

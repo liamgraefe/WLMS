@@ -45,7 +45,7 @@ if (isset($_POST["update_bookmarks"])) {
     }
 }
 ?>
-<form action="edit.php?id_new=<?php echo $id; ?>" method="POST">
+<form class="edit-form" action="edit.php?id_new=<?php echo $id; ?>" method="POST">
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" name="name" class="form-control" value="<?php echo $row['name']; ?>">
