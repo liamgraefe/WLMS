@@ -15,7 +15,7 @@ Manage all your bookmarks in one space from all devices. Set categories and desc
 
 3. Create the DB
 
-3.1 Open the a terminal and navigate to the /bin directory of XAMPP:
+3.1 Open a terminal and navigate to the /bin directory of XAMPP:
 
     Windows: C:\xampp\mysql\bin
 
@@ -31,7 +31,7 @@ Manage all your bookmarks in one space from all devices. Set categories and desc
 
     If you get asked to enter a password, just press enter
 
-4. Start the Apache Web Server and MySQL database over the XAMPP UI
+4. Start the Apache Web Server and MySQL database over the XAMPP UI (on mac: manager-osx)
 
 5. Now you can visit [WLMS](http://localhost/WLMS/index.php) in your browser
 
