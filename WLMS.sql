@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 15. Nov 2024 um 12:19
+-- Erstellungszeit: 21. Nov 2024 um 16:20
 -- Server-Version: 10.4.28-MariaDB
 -- PHP-Version: 8.2.4
 
@@ -47,6 +47,18 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Daten für Tabelle `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Entertainment'),
+(2, 'Social Media'),
+(3, 'Productivity'),
+(4, 'Work'),
+(5, 'University'),
+(6, 'Shopping');
+
+--
 -- Indizes der exportierten Tabellen
 --
 
@@ -76,7 +88,7 @@ ALTER TABLE `bookmarks`
 -- AUTO_INCREMENT für Tabelle `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
