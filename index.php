@@ -9,7 +9,6 @@
     <table id="bookmarkTable" class="table table-hover table-bordered table-striped">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>URL</th>
                 <th>Description</th>

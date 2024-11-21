@@ -10,7 +10,6 @@ $result = mysqli_query($connection, $query);
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>
-                <td>{$row['bookmark_id']}</td>
                 <td>{$row['bookmark_name']}</td>
                 <td><a href='{$row['url']}'>{$row['url']}</a></td>
                 <td>{$row['description']}</td>

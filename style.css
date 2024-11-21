@@ -18,9 +18,16 @@
 .container {
     margin-top: 50px;
 }
+
 h6 {
+    margin-top: 2%;
     text-align: center;
-    color: red;
+    color: rgb(21, 161, 21);
+}
+
+.table, .box1 {
+    margin: auto;
+    width: 90% !important; 
 }
 
 .required-star {
