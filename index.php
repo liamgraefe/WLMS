@@ -6,7 +6,7 @@
         <h2>Bookmarks</h2>
         <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Bookmark</button>
     </div>
-    <table class="table table-hover table-bordered table-striped">
+    <table id="bookmarkTable" class="table table-hover table-bordered table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -73,7 +73,6 @@
                         <div class="form-group">
                             <label for="category" class="form-label">Pick a category:</label>
                             <select class="form-select" id="dropdown" name="category">
-                                <!-- Optionen werden per AJAX hinzugefügt -->
                                 <?php
                                 $query = "SELECT id, name FROM categories";
                                 $result = mysqli_query($connection, $query);

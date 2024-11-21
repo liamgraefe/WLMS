@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
         echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
     }
 } else {
-    echo '<option disabled>Keine Kategorien gefunden</option>';
+    echo '<option disabled>No categories found</option>';
 }
 
 ?>

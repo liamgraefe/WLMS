@@ -1,8 +1,8 @@
 <?php
 include("dbcon.php");
 
-// Fehleranzeige aktivieren
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // zeige detaillierte SQL-Fehler
+// activate error reporting
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // show detailed SQL errors
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 

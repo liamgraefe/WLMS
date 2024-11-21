@@ -15,11 +15,11 @@ if ($result) {
                 <td><a href='{$row['url']}'>{$row['url']}</a></td>
                 <td>{$row['description']}</td>
                 <td>{$row['category_name']}</td>
-                <td><a href='edit.php?id={$row['bookmark_id']}' class='btn btn-success'>Edit</a></td>
-                <td><a href='delete.php?id={$row['bookmark_id']}' class='btn btn-danger'>Delete</a></td>
+                <td><a href='edit.php?id={$row['bookmark_id']}' class='btn btn-success edit'>Edit</a></td>
+                <td><a data-id='{$row['bookmark_id']}' class='btn btn-danger delete'>Delete</a></td>
               </tr>";
     }
 } else {
-    echo "<tr><td colspan='7'>Keine Einträge gefunden</td></tr>";
+    echo "<tr><td colspan='7'>No entries found</td></tr>";
 }
 ?>

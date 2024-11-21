@@ -6,81 +6,99 @@
 <script>
     $(document).ready(function() {
         $('#exampleModal').on('show.bs.modal', function() {
-            // AJAX-Anfrage, um Kategorien abzurufen und Dropdown zu füllen
+            // AJAX-Request load categories
             $.ajax({
-                url: 'get_categories.php', // Das PHP-Skript, das die Kategorien zurückgibt
+                url: 'get_categories.php',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
                     const dropdown = $('#dropdown');
-                    dropdown.empty(); // Alle alten Optionen entfernen
+                    dropdown.empty();
 
-                    // Optionen hinzufügen, falls Kategorien existieren
+                    // fill dropdown
                     if (data.length > 0) {
                         data.forEach(category => {
                             dropdown.append(`<option value="${category.id}">${category.name}</option>`);
                         });
                     } else {
-                        dropdown.append('<option disabled>Keine Kategorien gefunden</option>');
+                        dropdown.append('<option disabled>No categories found</option>');
                     }
                 },
                 error: function() {
-                    console.error("Fehler beim Laden der Kategorien.");
+                    console.error("Could not load categories.");
                 }
             });
         });
-        // Formular per AJAX absenden
-        $('#bookmarkForm').on('submit', function (e) {
-            e.preventDefault(); // Standardformularverhalten verhindern
+        // send form
+        $('#bookmarkForm').on('submit', function(e) {
+            e.preventDefault();
 
-            // Formulardaten sammeln
+            // gather form data
             const formData = $(this).serialize();
 
             $.ajax({
-                url: 'insert_data.php', // PHP-Skript zum Einfügen des neuen Datensatzes
+                url: 'insert_data.php',
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
                 success: function(response) {
                     if (response.status === "success") {
-                        // Modal schließen
+                        // TODO: Fix
                         $('#exampleModal').modal('hide');
 
-                        // Tabelle aktualisieren
+                        // update table
                         loadTableData();
 
-                        // Optional: Erfolgsmeldung anzeigen
                         alert(response.message);
                     } else {
-                        // Fehlerhinweis aus der JSON-Antwort anzeigen
                         alert(response.message);
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    console.error("AJAX error:", textStatus, errorThrown); // Konsolen-Log für Details
-                    alert("Fehler beim Hinzufügen des Bookmarks: " + jqXHR.responseText);
+                    console.error("AJAX error:", textStatus, errorThrown);
+                    alert("Error: " + jqXHR.responseText);
                 }
 
             });
         });
 
+        // delete bookmark
+        $(document).on('click', '.delete', function() {
+            const id = $(this).data('id');
 
-        // Funktion zum dynamischen Laden der Tabelle
+            if (confirm("Are you sure?")) {
+                $.ajax({
+                    url: "delete.php",
+                    type: "POST",
+                    data: {
+                        id: id
+                    },
+                    success: function() {
+                        loadTableData();
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("AJAX error:", textStatus, errorThrown);
+                        alert("Error while deleting entry.");
+                    }
+                });
+            }
+        });
+        // dynamic table loading
         function loadTableData() {
             $.ajax({
-                url: 'get_bookmarks.php', // PHP-Skript zum Abrufen der Tabelle
+                url: 'get_bookmarks.php',
                 type: 'GET',
                 dataType: 'html',
                 success: function(data) {
-                    $('table tbody').html(data); // Tabelle mit den neuen Daten aktualisieren
+                    $('table tbody').html(data);
                 },
                 error: function() {
-                    console.error("Fehler beim Laden der Tabelleninhalte.");
+                    console.error("Error on table loading.");
                 }
             });
         }
 
-        // Initialer Aufruf zum Laden der Tabelle
+        // initial table load call
         loadTableData();
     });
 </script>
