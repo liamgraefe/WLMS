@@ -11,5 +11,5 @@
 </head>
 
 <body>
-    <h1 id="main_title">WLMS</h1>
+    <h1 id="main_title"><a href="index.php">WLMS</a></h1>
     <div class="container"></div>
